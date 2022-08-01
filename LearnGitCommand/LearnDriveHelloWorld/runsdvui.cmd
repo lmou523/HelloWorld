@@ -1,0 +1,2 @@
+cd /d "C:\Users\CommonS\Desktop\GitHubProj\LearnCommandPath\ProjPath\HelloWorld\LearnGitCommand\LearnDriveHelloWorld" &msbuild "LearnDriveHelloWorld.vcxproj" /t:sdvViewer /p:configuration="Debug" /p:platform="x64" /p:SolutionDir="C:\Users\CommonS\Desktop\GitHubProj\LearnCommandPath\ProjPath\HelloWorld\LearnGitCommand" 
+exit %errorlevel% 
