@@ -5,10 +5,19 @@
 
 
 // IRP_MJ_CREATE
-NTSTATUS IrpCreateCallBack(PDEVICE_OBJECT pDriver,PIRP pIrp );
+NTSTATUS IrpCreateCallBack(PDEVICE_OBJECT pDevice,PIRP pIrp );
 
 // IRP_MJ_CLOSE
-NTSTATUS IrpCloseCallBack(PDEVICE_OBJECT pDriver, PIRP pIrp);
+NTSTATUS IrpCloseCallBack(PDEVICE_OBJECT pDevice, PIRP pIrp);
 
 // IRP_MJ_CLEANUP
-NTSTATUS IrpCleanUpCallBack(PDEVICE_OBJECT pDriver, PIRP pIrp);
+NTSTATUS IrpCleanUpCallBack(PDEVICE_OBJECT pDevice, PIRP pIrp);
+
+// IRP_MJ_READ
+NTSTATUS IrpReadCallBack(PDEVICE_OBJECT pDevice, PIRP pIrp);
+
+// IRP_MJ_WRITE
+NTSTATUS IrpWriteCallBack(PDEVICE_OBJECT pDevice, PIRP pIrp);
+
+// IRP_MJ_DEVICE_CONTROL
+NTSTATUS IrpDeviceControlCallBack(PDEVICE_OBJECT pDevice, PIRP pIrp);

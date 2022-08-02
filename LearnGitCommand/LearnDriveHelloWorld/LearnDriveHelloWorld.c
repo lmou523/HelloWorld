@@ -1,8 +1,8 @@
 
-#include <ntifs.h>
-
 #include "CommonDef.h"
+
 #include "MajorFunc.h"
+
 // 创建进程的回调函数
 void  CreateProcessNotify_CallBack(HANDLE hPid, HANDLE hMyPid, BOOLEAN bCreate);
 // 链接IRP的回调函数
@@ -42,14 +42,18 @@ NTSTATUS DrvInit(PDRIVER_OBJECT pDriver, PUNICODE_STRING reg_path)
 
 	RtlInitUnicodeString(&strDeviceName, DRIVERNAME);
 	RtlInitUnicodeString(&strSymbalName, SYMBALNAME);
-
-	ntstatus = IoCreateDevice(pDriver, 0, &strDeviceName, FILE_DEVICE_UNKNOWN, 0, TRUE, &pMyDevice);
+	// 为驱动创建设备
+	ntstatus = IoCreateDevice(pDriver, EXTSIZE, &strDeviceName, FILE_DEVICE_UNKNOWN, 0, TRUE, &pMyDevice);
 
 	if (!NT_SUCCESS(ntstatus))
 	{
 		DbgPrint("Create Device Failed :%x\n",ntstatus);
 		return ntstatus;
 	}
+	// 设置读写方式
+	pMyDevice->Flags |= DO_BUFFERED_IO;
+
+	// 设置符号链接
 	ntstatus = IoCreateSymbolicLink(&strSymbalName, &strDeviceName);
 
 	if (!NT_SUCCESS(ntstatus))
@@ -58,7 +62,7 @@ NTSTATUS DrvInit(PDRIVER_OBJECT pDriver, PUNICODE_STRING reg_path)
 		IoDeleteDevice(pMyDevice);
 		return ntstatus;
 	}
-
+	// 设置IRP的回调函数
 	ntstatus = MajorFuncLink(pDriver);
 
 	if (!NT_SUCCESS(ntstatus))
@@ -82,6 +86,7 @@ NTSTATUS DriverEntry(PDRIVER_OBJECT pDriver, PUNICODE_STRING reg_path)
 	pDriver->DriverUnload = DrvUnload;
 	// 绑定创建进程的回调函数
 	DbgPrint("[%s] [%s]--%wZ--\n", LMDDPUBNAME, MODELENAME,reg_path);
+
 	PsSetCreateProcessNotifyRoutine(CreateProcessNotify_CallBack , FALSE);
 	
 	NTSTATUS ntstatus = STATUS_SUCCESS;
@@ -98,7 +103,7 @@ NTSTATUS DriverEntry(PDRIVER_OBJECT pDriver, PUNICODE_STRING reg_path)
 void  CreateProcessNotify_CallBack(HANDLE hPid, HANDLE hMyPid, BOOLEAN bCreate)
 {
 
-	DbgPrint("[%s] [%s] Create Process Notify hPid : 0x%p hMyPid : 0x%p bCreate:%d\n", LMDDPUBNAME, MODELENAME, hPid, hMyPid, bCreate);
+//	DbgPrint("[%s] [%s] Create Process Notify hPid : 0x%p hMyPid : 0x%p bCreate:%d\n", LMDDPUBNAME, MODELENAME, hPid, hMyPid, bCreate);
 }
 
 // 链接驱动IRP的回调函数
@@ -109,6 +114,10 @@ NTSTATUS MajorFuncLink(PDRIVER_OBJECT pDriver)
 	pDriver->MajorFunction[IRP_MJ_CREATE]	= IrpCreateCallBack;
 	pDriver->MajorFunction[IRP_MJ_CLOSE]	= IrpCloseCallBack;
 	pDriver->MajorFunction[IRP_MJ_CLEANUP]	= IrpCleanUpCallBack;
+	pDriver->MajorFunction[IRP_MJ_READ]		= IrpReadCallBack;
+	pDriver->MajorFunction[IRP_MJ_WRITE]	= IrpWriteCallBack;
+	pDriver->MajorFunction[IRP_MJ_DEVICE_CONTROL] = IrpDeviceControlCallBack;
+
 
 	return ntstatus;
 }
