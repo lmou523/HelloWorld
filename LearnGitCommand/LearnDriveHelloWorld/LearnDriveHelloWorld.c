@@ -85,13 +85,15 @@ NTSTATUS DriverEntry(PDRIVER_OBJECT pDriver, PUNICODE_STRING reg_path)
 	// 设置反初始化的回调函数
 	pDriver->DriverUnload = DrvUnload;
 	// 绑定创建进程的回调函数
-	DbgPrint("[%s] [%s]--%wZ--\n", LMDDPUBNAME, MODELENAME,reg_path);
+	DbgPrint("[%s] [%s]--%wZ--\n", LMDDPUBNAME, MODELENAME, reg_path);
 
 	PsSetCreateProcessNotifyRoutine(CreateProcessNotify_CallBack , FALSE);
 	
 	NTSTATUS ntstatus = STATUS_SUCCESS;
 
 	ntstatus  = DrvInit(pDriver, reg_path);
+
+	TestUseStrOper();
 
 	return ntstatus;
 }

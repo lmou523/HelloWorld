@@ -1,7 +1,9 @@
 #pragma once
 
 
+// 此函数为测试函数 会在入口函数进行调用测试 主要是记录一些字符相关的操作
 
+NTSTATUS TestUseStrOper();
 
 
 // IRP_MJ_CREATE
