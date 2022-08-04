@@ -179,10 +179,12 @@
   <ItemGroup>
     <ClCompile Include="LearnDriveHelloWorld.c" />
     <ClCompile Include="MajorFunc.c" />
+    <ClCompile Include="OperatorFile.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommonDef.h" />
     <ClInclude Include="MajorFunc.h" />
+    <ClInclude Include="OperatorFile.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
