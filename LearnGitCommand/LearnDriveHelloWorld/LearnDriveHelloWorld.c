@@ -3,6 +3,7 @@
 
 #include "MajorFunc.h"
 #include "OperatorFile.h"
+#include "OperatorReg.h"
 
 // 创建进程的回调函数
 void  CreateProcessNotify_CallBack(HANDLE hPid, HANDLE hMyPid, BOOLEAN bCreate);
@@ -96,8 +97,9 @@ NTSTATUS DriverEntry(PDRIVER_OBJECT pDriver, PUNICODE_STRING reg_path)
 
 	// **** 调用测试函数
 	// TestUseStrOper();
+	TestOperatorReg(pDriver, reg_path);
 
-	KernelDeleteFile(L"\\??\\C:\\123.exe");
+	//KernelDeleteFile(L"\\??\\C:\\123.exe");
 
 	KernelCopyFile(L"\\??\\C:\\456.exe", L"\\??\\C:\\789.exe");
 

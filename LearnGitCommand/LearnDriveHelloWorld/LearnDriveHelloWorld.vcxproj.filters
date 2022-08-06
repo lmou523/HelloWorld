@@ -28,6 +28,9 @@
     <ClCompile Include="OperatorFile.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="OperatorReg.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommonDef.h">
@@ -37,6 +40,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="OperatorFile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OperatorReg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

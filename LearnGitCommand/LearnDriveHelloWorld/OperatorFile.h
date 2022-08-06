@@ -25,4 +25,5 @@ NTSTATUS KernelDeleteFile(PCWCHAR pwFilePath);
 NTSTATUS KernelCopyFile(PCWCHAR pwSrcFilePath, PCWCHAR pwDstFilePath);
 
 // 拷贝文件 这个函数采用的是分段读取 缓冲区大小为COPYFILEBUFSZ
+// 此函数未实现
 NTSTATUS KernelCopyFileEx(PCWCHAR pwSrcFilePath, PCWCHAR pwDstFilePath);

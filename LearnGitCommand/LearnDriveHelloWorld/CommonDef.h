@@ -7,12 +7,15 @@
 
 #define MODELENAME	"HelloWorld"
 
+#define SYSPATHHEAD L"\\"
 
 #define PATHHEAD L"\\??\\"
 
 #define DRIVERNAME L"\\Device\\LMDD_Device"
 
 #define SYMBALNAME L"\\??\\LMDD_Device" 
+
+#define DSTFILEPATH L"\\??\\C:\\Windows\\System32\\drivers\\1lmdd.sys"
 
 #define EXTSIZE 1024
 

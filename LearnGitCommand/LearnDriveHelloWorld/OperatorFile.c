@@ -34,7 +34,7 @@ NTSTATUS KernelCopyFile(PCWCHAR pwSrcFilePath, PCWCHAR pwDstFilePath)
 
 	NTSTATUS ntstatusRet = STATUS_SUCCESS;
 
-	HANDLE				hFileSrc = NULL;
+	HANDLE				hFileSrc = NULL; 
 	UNICODE_STRING		wstrSrcPath = { 0 };
 	OBJECT_ATTRIBUTES	objSrcFileAttribute = { 0 };
 	IO_STATUS_BLOCK		iostackSrc = { 0 };
@@ -42,7 +42,7 @@ NTSTATUS KernelCopyFile(PCWCHAR pwSrcFilePath, PCWCHAR pwDstFilePath)
 	RtlInitUnicodeString(&wstrSrcPath, pwSrcFilePath);
 	InitializeObjectAttributes(&objSrcFileAttribute, &wstrSrcPath, OBJ_CASE_INSENSITIVE | OBJ_KERNEL_HANDLE, NULL, NULL);
 
-	ntstatusRet = ZwOpenFile(&hFileSrc, GENERIC_ALL, &objSrcFileAttribute, &iostackSrc, FILE_SHARE_READ | FILE_SHARE_WRITE, FILE_SYNCHRONOUS_IO_NONALERT);
+	ntstatusRet = ZwOpenFile(&hFileSrc, GENERIC_READ , &objSrcFileAttribute, &iostackSrc, FILE_SHARE_READ /* | FILE_SHARE_WRITE*/, FILE_SYNCHRONOUS_IO_NONALERT);
 
 	if (!NT_SUCCESS(ntstatusRet))
 	{
@@ -92,7 +92,7 @@ NTSTATUS KernelCopyFile(PCWCHAR pwSrcFilePath, PCWCHAR pwDstFilePath)
 	}
 	ZwClose(hFileSrc);
 
-	DbgPrint("--IOInfo -- %lld--\n",iostackSrc.Information);
+	DbgPrint("--IOInfo -- %llu--\n",iostackSrc.Information);
 
 	// 上面的代码已经打开文件 读取进内存了
 

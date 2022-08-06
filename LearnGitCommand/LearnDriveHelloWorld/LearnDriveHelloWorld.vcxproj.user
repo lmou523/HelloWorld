@@ -4,26 +4,31 @@
     <SignMode>Off</SignMode>
     <DbgengKernelMachineName>win10x64</DbgengKernelMachineName>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Win7 Debug|Win32'">
+    <SignMode>Off</SignMode>
+    <DbgengKernelMachineName>win10x64</DbgengKernelMachineName>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <SignMode>Off</SignMode>
     <DbgengKernelMachineName>win10x64</DbgengKernelMachineName>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
-    <DbgengKernelMachineName>win10x64</DbgengKernelMachineName>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Win7 Debug|x64'">
+    <SignMode>Off</SignMode>
     <DbgengKernelMachineName>win10x64</DbgengKernelMachineName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <DbgengKernelMachineName>win10x64</DbgengKernelMachineName>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
-    <DbgengKernelMachineName>win10x64</DbgengKernelMachineName>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Win7 Release|Win32'">
     <DbgengKernelMachineName>win10x64</DbgengKernelMachineName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <DbgengKernelMachineName>win10x64</DbgengKernelMachineName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Win7 Release|x64'">
+    <DbgengKernelMachineName>win10x64</DbgengKernelMachineName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Win7 Release|x64'">
     <DbgengKernelMachineName>win10x64</DbgengKernelMachineName>
   </PropertyGroup>
 </Project>
