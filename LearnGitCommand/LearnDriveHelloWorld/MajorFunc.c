@@ -4,7 +4,9 @@
 #include "CommonDef.h"
 
 #include "MajorFunc.h"
+#include "PracticeIRQL.h"
 
+BOOLEAN bLockOper = FALSE;
 
 // IRP_CREATE_OPERATION
 NTSTATUS IrpCreateCallBack(PDEVICE_OBJECT pDevice, PIRP pIrp)
@@ -66,14 +68,42 @@ NTSTATUS IrpReadCallBack(PDEVICE_OBJECT pDevice, PIRP pIrp)
 	const char szMessage[] = "This is a Kernel Buffer";
 	ULONG ulMessageLen = strlen(szMessage) + 1;
 
-	RtlCopyMemory(pDstBuff, szMessage, ulMessageLen);
+	KIRQL kirql = 0;
+	// **** 一段神奇的代码
 
-	pIrp->IoStatus.Status = ntstatus;
-	pIrp->IoStatus.Information = ulMessageLen;
+	if (!bLockOper) // 如果为FALSE  丢弃很多操作
+	{
+		AcquireSpinLock(&kirql); // 防止bLockOper被多次置为TRUE 同时减少锁中间的代码 减少DPC中任务的数量
+		bLockOper = TRUE;
+		ReleaseSpinLock(kirql);
 
-	DbgPrint("read Buf Len is %d\n",ulMessageLen);
+		// ****
+		// 操作数据
+		DbgPrint("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+		// ****
+		bLockOper = FALSE;
+	}
+	// ****
+
+	// 上锁
+	AcquireSpinLock(&kirql);
+	{
+		// 拷贝的局部变量 不需要锁
+		// RtlCopyMemory(pDstBuff, szMessage, ulMessageLen);
+
+		// 拷贝全局的数据 需要加锁
+		static CHAR s_TestBuf[] = "dwad3247,.,/";
+		RtlCopyMemory(pDstBuff, s_TestBuf,sizeof(s_TestBuf));
+
+		pIrp->IoStatus.Status = ntstatus;
+		pIrp->IoStatus.Information = ulMessageLen;
+
+		DbgPrint("read Buf Len is %d\n", ulMessageLen);
+		DbgPrint("---Current Irql = %d -- \n", KeGetCurrentIrql());
+	}
+	ReleaseSpinLock(kirql);
+	
 	IoCompleteRequest(pIrp, IO_NO_INCREMENT);
-
 	return ntstatus;
 }
 
@@ -88,7 +118,6 @@ NTSTATUS IrpWriteCallBack(PDEVICE_OBJECT pDevice, PIRP pIrp)
 
 	ULONG ulWantWriteSize = pStackLocation->Parameters.Read.Length;
 	PCHAR pSrcBuff = pIrp->AssociatedIrp.SystemBuffer;
-
 
 
 	RtlZeroMemory(pDevice->DeviceExtension, EXTSIZE);

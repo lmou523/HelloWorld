@@ -237,12 +237,14 @@
     <ClCompile Include="MajorFunc.c" />
     <ClCompile Include="OperatorFile.c" />
     <ClCompile Include="OperatorReg.c" />
+    <ClCompile Include="PracticeIRQL.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommonDef.h" />
     <ClInclude Include="MajorFunc.h" />
     <ClInclude Include="OperatorFile.h" />
     <ClInclude Include="OperatorReg.h" />
+    <ClInclude Include="PracticeIRQL.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

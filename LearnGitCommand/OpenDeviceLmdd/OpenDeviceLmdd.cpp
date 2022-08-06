@@ -26,7 +26,7 @@ int main()
     if (hDevice == INVALID_HANDLE_VALUE)
     {
         printf("[Device :%s]   Open  Fail\n", DeviceName);
-
+        system("pause");
         return 0;
     }
 
