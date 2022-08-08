@@ -10,7 +10,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <SignMode>Off</SignMode>
-    <DbgengKernelMachineName>win10x64</DbgengKernelMachineName>
+    <DbgengKernelMachineName>win10pipe</DbgengKernelMachineName>
+    <DebuggerFlavor>DbgengKernelDebugger</DebuggerFlavor>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Win7 Debug|x64'">
     <SignMode>Off</SignMode>

@@ -17,6 +17,8 @@
 
 #define DSTFILEPATH L"\\??\\C:\\Windows\\System32\\drivers\\1lmdd.sys"
 
+// #define MEMNAMETAG 0x0927
+#define MEMNAMETAG 'lmdd'
 #define EXTSIZE 1024
 
 #define COPYFILEBUFSZ 4096

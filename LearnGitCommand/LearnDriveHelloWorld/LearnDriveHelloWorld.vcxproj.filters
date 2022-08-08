@@ -34,6 +34,9 @@
     <ClCompile Include="PracticeIRQL.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="OperatorMem.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommonDef.h">
@@ -49,6 +52,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PracticeIRQL.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OperatorMem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -17,6 +17,7 @@ void RunDpcFunc(PVOID Prama)
 	KernelCopyFile(L"\\??\\C:\\456.exe", L"\\??\\C:\\789.exe");
 }
 
+
 NTSTATUS TestIRQL(PDRIVER_OBJECT pDriver, PUNICODE_STRING reg_path)
 {	
 	NTSTATUS ntstatus = STATUS_SUCCESS;

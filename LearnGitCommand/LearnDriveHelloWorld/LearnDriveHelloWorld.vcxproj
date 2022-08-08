@@ -236,6 +236,7 @@
     <ClCompile Include="LearnDriveHelloWorld.c" />
     <ClCompile Include="MajorFunc.c" />
     <ClCompile Include="OperatorFile.c" />
+    <ClCompile Include="OperatorMem.c" />
     <ClCompile Include="OperatorReg.c" />
     <ClCompile Include="PracticeIRQL.c" />
   </ItemGroup>
@@ -243,6 +244,7 @@
     <ClInclude Include="CommonDef.h" />
     <ClInclude Include="MajorFunc.h" />
     <ClInclude Include="OperatorFile.h" />
+    <ClInclude Include="OperatorMem.h" />
     <ClInclude Include="OperatorReg.h" />
     <ClInclude Include="PracticeIRQL.h" />
   </ItemGroup>
