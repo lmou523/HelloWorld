@@ -5,12 +5,30 @@
 #include <Windows.h>
 
 #include <stdlib.h>
+#include <process.h>
 
 #define WDeviceName L"\\\\.\\LMDD_Device"
 #define DeviceName  "\\\\.\\LMDD_Device"
 
 
 #define IOCTL_MUL CTL_CODE(FILE_DEVICE_UNKNOWN,0x9027,METHOD_BUFFERED,FILE_ANY_ACCESS)
+
+BOOL bEventThreadIsExit = FALSE;
+BOOL bHadExit = FALSE;
+void TestThread(PVOID pData)
+{
+    HANDLE hEvent = *(PHANDLE)pData;
+
+    while (!bEventThreadIsExit)
+    {
+        printf("Set kernel Event Handle \n");
+
+        SetEvent(hEvent);
+        Sleep(2000);
+    }
+    bHadExit = TRUE;
+}
+
 
 int main()
 {
@@ -20,7 +38,7 @@ int main()
     BYTE szBuff[iTemBufSize] = { 0 };
     DWORD dwReaded = 0;
     DWORD dwWriteed = 0;
-
+ 
     hDevice = CreateFile(WDeviceName, GENERIC_READ | GENERIC_WRITE, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 
     if (hDevice == INVALID_HANDLE_VALUE)
@@ -31,7 +49,7 @@ int main()
     }
 
     printf("[Device :%s]   Open  Successful\n", DeviceName);
-    system("pause");
+    /*system("pause");
     printf("Will Read\n");
 
     BOOL bRet = ReadFile(hDevice, szBuff, iTemBufSize, &dwReaded, NULL);
@@ -56,11 +74,33 @@ int main()
 
     DeviceIoControl(hDevice, IOCTL_MUL, &dwSrc, sizeof(DWORD), &dwDst, sizeof(DWORD), &dwOperatorSize, NULL);
 
-    printf("--In %d--Out %d--Really Info %d--\n", dwSrc, dwDst, dwOperatorSize);
+    printf("--In %d--Out %d--Really Info %d--\n", dwSrc, dwDst, dwOperatorSize);*/
 
+
+    HANDLE hEvent = CreateEvent(NULL, FALSE, FALSE, NULL);
+    HANDLE hEventThread = NULL;
+    if (hEvent == NULL)
+    {
+        printf("Create Event failed");
+        CloseHandle(hDevice);
+        return -1;
+    }
+
+    if (DeviceIoControl(hDevice, IOCTL_MUL, &hEvent, sizeof(HANDLE), &dwReaded, sizeof(DWORD), &dwWriteed, NULL))
+    {
+        hEventThread = (HANDLE)_beginthread(TestThread, 0, &hEvent);
+    }
+    system("pause");
+
+    if (hEventThread != NULL)
+    {
+        bEventThreadIsExit = TRUE;
+        while (!bHadExit) { Sleep(5000); };
+        CloseHandle(hEvent);
+    }
 
     CloseHandle(hDevice);
-    system("pause");
+    CloseHandle(hEvent);
     return 0;
 }
 

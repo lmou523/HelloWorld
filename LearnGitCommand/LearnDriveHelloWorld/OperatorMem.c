@@ -21,8 +21,8 @@ NTSTATUS TestMemory(PDRIVER_OBJECT pDriver, PUNICODE_STRING reg_path)
 		// RtlCompareMemory(); 有多少个字节相等
 		// RtlEqualMemory(); 判断两片内存是否相等
 	}
-
-	InitializeListHead(&listHead);
+	if(listHead.Blink == NULL || listHead.Flink == NULL)
+		InitializeListHead(&listHead);
 
 	DbgPrint("-listHead:-%p-Flink:-%p-Blink:-%p\n",&listHead, listHead.Flink, listHead.Blink);
 
@@ -32,6 +32,9 @@ NTSTATUS TestMemory(PDRIVER_OBJECT pDriver, PUNICODE_STRING reg_path)
 
 NTSTATUS AddProcessToList(HANDLE hPid, PEPROCESS peprocess, PCHAR pProcessName)
 {
+	if (listHead.Blink == NULL || listHead.Flink == NULL)
+		InitializeListHead(&listHead);
+
 	NTSTATUS ntstatusRet = STATUS_SUCCESS;
 	if (hPid == NULL || peprocess == NULL || pProcessName == NULL)
 		return STATUS_UNSUCCESSFUL;
@@ -63,6 +66,9 @@ NTSTATUS AddProcessToList(HANDLE hPid, PEPROCESS peprocess, PCHAR pProcessName)
 
 NTSTATUS RemoveAllProcessList()
 {
+	if (listHead.Blink == NULL || listHead.Flink == NULL)
+		InitializeListHead(&listHead);
+
 	NTSTATUS ntstatusRet = STATUS_SUCCESS;
 
 	PLIST_ENTRY pTemNode = NULL;
@@ -85,6 +91,9 @@ NTSTATUS RemoveAllProcessList()
 // 遍历链表 不删除
 NTSTATUS ForEachList()
 {
+	if (listHead.Blink == NULL || listHead.Flink == NULL)
+		InitializeListHead(&listHead);
+
 	NTSTATUS ntstatusRet = STATUS_SUCCESS;
 
 	PLIST_ENTRY pTemNode = NULL;

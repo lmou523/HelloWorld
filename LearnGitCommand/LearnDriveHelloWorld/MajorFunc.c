@@ -5,6 +5,7 @@
 
 #include "MajorFunc.h"
 #include "PracticeIRQL.h"
+#include "OperatorKernelObject.h"
 
 BOOLEAN bLockOper = FALSE;
 
@@ -153,15 +154,29 @@ NTSTATUS IrpDeviceControlCallBack(PDEVICE_OBJECT pDevice, PIRP pIrp)
 	{
 	case IOCTL_MUL:
 	{
+		/*
 		const ULONG ulTemMul = 5;
 		DWORD32 dwIndata = *(PDWORD32)pIrp->AssociatedIrp.SystemBuffer;
 		DbgPrint("Kernel--In: %d--\n",dwIndata);
 
 		dwIndata *= ulTemMul;
 		*(PDWORD32)pIrp->AssociatedIrp.SystemBuffer = dwIndata;
+		ulIOInfo = 4;
+		*/
+		DWORD32 dwIndata = *(PDWORD32)pIrp->AssociatedIrp.SystemBuffer;
+		DbgPrint("Kernel--In: %d--\n", dwIndata);
+
+		HANDLE hEvent = (HANDLE)dwIndata;
+
+		ntstatus = ObReferenceObjectByHandle(hEvent, EVENT_MODIFY_STATE,*ExEventObjectType, KernelMode ,&PUserModeEventThread,NULL);
+
+		if (NT_SUCCESS(ntstatus))
+		{
+			ObDereferenceObject(PUserModeEventThread);
+			bUserModeEventInit = TRUE;
+		}
 
 		ulIOInfo = 4;
-
 		break;
 	}
 	default:

@@ -6,6 +6,7 @@
 #include "OperatorReg.h"
 #include "PracticeIRQL.h"
 #include "OperatorMem.h"
+#include "OperatorKernelObject.h"
 
 
 // 创建进程的回调函数
@@ -20,9 +21,11 @@ void DrvUnload(PDRIVER_OBJECT pDriver)
 	DbgPrint("[%s] [%s] Unload\n", LMDDPUBNAME, MODELENAME);
 	
 	// 打印链表中记录的元素不释放内存
-	ForEachList();
+	// ForEachList();
 	// 打印链表中记录的元素并释放内存
-	RemoveAllProcessList();
+	// RemoveAllProcessList();
+	// 线程资源释放 不然会蓝屏
+	EndThread();
 
 	PsSetCreateProcessNotifyRoutine(CreateProcessNotify_CallBack, TRUE);
 
@@ -106,8 +109,12 @@ NTSTATUS DriverEntry(PDRIVER_OBJECT pDriver, PUNICODE_STRING reg_path)
 
 	// **** 调用测试函数
 	// 
-	//调用内存操作函数
-	TestMemory(pDriver, reg_path);
+	// 测试使用事件
+	StartThread();
+	// 
+	// 调用内存操作函数 
+	// TestMemory(pDriver, reg_path);
+	// 
 	// 
 	// 调用IRQL相关函数
 	// TestIRQL(pDriver, reg_path);
@@ -137,7 +144,7 @@ void  CreateProcessNotify_CallBack(HANDLE hPid, HANDLE hMyPid, BOOLEAN bCreate)
 	LMDDPUBNAME, MODELENAME, hPid, hMyPid, bCreate);
 
 	// 每次创建进程都将数据放到链表里面去
-	if (bCreate)
+	if (bCreate && 0x0)
 	{
 		PEPROCESS peTem = NULL;
 		NTSTATUS ntstatus = PsLookupProcessByProcessId(hMyPid, &peTem);
