@@ -40,6 +40,9 @@
     <ClCompile Include="OperatorKernelObject.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="OperatorTimer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommonDef.h">
@@ -61,6 +64,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="OperatorKernelObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OperatorTimer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

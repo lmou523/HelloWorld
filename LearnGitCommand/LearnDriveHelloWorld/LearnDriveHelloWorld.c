@@ -7,7 +7,7 @@
 #include "PracticeIRQL.h"
 #include "OperatorMem.h"
 #include "OperatorKernelObject.h"
-
+#include "OperatorTimer.h"
 
 // 创建进程的回调函数
 void  CreateProcessNotify_CallBack(HANDLE hPid, HANDLE hMyPid, BOOLEAN bCreate);
@@ -25,17 +25,19 @@ void DrvUnload(PDRIVER_OBJECT pDriver)
 	// 打印链表中记录的元素并释放内存
 	// RemoveAllProcessList();
 	// 线程资源释放 不然会蓝屏
-	EndThread();
+	// EndThread();
+
+	TimeUninit();
 
 	PsSetCreateProcessNotifyRoutine(CreateProcessNotify_CallBack, TRUE);
 
 	if (pDriver->DeviceObject != NULL)
 	{
+		// IoStopTimer(pDriver->DeviceObject);
 		IoDeleteDevice(pDriver->DeviceObject);
 
 		UNICODE_STRING strSymbalName = { 0 };
 		RtlInitUnicodeString(&strSymbalName, SYMBALNAME);
-
 		IoDeleteSymbolicLink(&strSymbalName);
 	}
 }
@@ -85,6 +87,9 @@ NTSTATUS DrvInit(PDRIVER_OBJECT pDriver, PUNICODE_STRING reg_path)
 		return ntstatus;
 	}
 
+	// 使用定时器
+	TimerInit(pMyDevice);
+
 	return ntstatus;
 }
 
@@ -108,9 +113,10 @@ NTSTATUS DriverEntry(PDRIVER_OBJECT pDriver, PUNICODE_STRING reg_path)
 
 
 	// **** 调用测试函数
+
 	// 
 	// 测试使用事件
-	StartThread();
+	// StartThread();
 	// 
 	// 调用内存操作函数 
 	// TestMemory(pDriver, reg_path);
@@ -133,9 +139,6 @@ NTSTATUS DriverEntry(PDRIVER_OBJECT pDriver, PUNICODE_STRING reg_path)
 	return ntstatus;
 }
 
-
-////////////////////////////////////
-NTKERNELAPI UCHAR* PsGetProcessImageFileName(__in PEPROCESS Process);
 
 // 创建进程的回调函数
 void  CreateProcessNotify_CallBack(HANDLE hPid, HANDLE hMyPid, BOOLEAN bCreate)

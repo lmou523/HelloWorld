@@ -239,6 +239,7 @@
     <ClCompile Include="OperatorKernelObject.c" />
     <ClCompile Include="OperatorMem.c" />
     <ClCompile Include="OperatorReg.c" />
+    <ClCompile Include="OperatorTimer.c" />
     <ClCompile Include="PracticeIRQL.c" />
   </ItemGroup>
   <ItemGroup>
@@ -248,6 +249,7 @@
     <ClInclude Include="OperatorKernelObject.h" />
     <ClInclude Include="OperatorMem.h" />
     <ClInclude Include="OperatorReg.h" />
+    <ClInclude Include="OperatorTimer.h" />
     <ClInclude Include="PracticeIRQL.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
