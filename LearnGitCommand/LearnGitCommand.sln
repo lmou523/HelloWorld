@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LearnDriveHelloWorld", "Lea
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenDeviceLmdd", "OpenDeviceLmdd\OpenDeviceLmdd.vcxproj", "{7322CEFC-5AB3-46E0-AE6E-176D11D40D83}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DriverNotify", "DriverNotify\DriverNotify.vcxproj", "{C4EC1D2E-2CE2-49A7-93D2-F70AAAE23D57}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -71,6 +73,30 @@ Global
 		{7322CEFC-5AB3-46E0-AE6E-176D11D40D83}.Win7 Release|x64.Build.0 = Release|x64
 		{7322CEFC-5AB3-46E0-AE6E-176D11D40D83}.Win7 Release|x86.ActiveCfg = Release|Win32
 		{7322CEFC-5AB3-46E0-AE6E-176D11D40D83}.Win7 Release|x86.Build.0 = Release|Win32
+		{C4EC1D2E-2CE2-49A7-93D2-F70AAAE23D57}.Debug|x64.ActiveCfg = Debug|x64
+		{C4EC1D2E-2CE2-49A7-93D2-F70AAAE23D57}.Debug|x64.Build.0 = Debug|x64
+		{C4EC1D2E-2CE2-49A7-93D2-F70AAAE23D57}.Debug|x64.Deploy.0 = Debug|x64
+		{C4EC1D2E-2CE2-49A7-93D2-F70AAAE23D57}.Debug|x86.ActiveCfg = Debug|Win32
+		{C4EC1D2E-2CE2-49A7-93D2-F70AAAE23D57}.Debug|x86.Build.0 = Debug|Win32
+		{C4EC1D2E-2CE2-49A7-93D2-F70AAAE23D57}.Debug|x86.Deploy.0 = Debug|Win32
+		{C4EC1D2E-2CE2-49A7-93D2-F70AAAE23D57}.Release|x64.ActiveCfg = Release|x64
+		{C4EC1D2E-2CE2-49A7-93D2-F70AAAE23D57}.Release|x64.Build.0 = Release|x64
+		{C4EC1D2E-2CE2-49A7-93D2-F70AAAE23D57}.Release|x64.Deploy.0 = Release|x64
+		{C4EC1D2E-2CE2-49A7-93D2-F70AAAE23D57}.Release|x86.ActiveCfg = Release|Win32
+		{C4EC1D2E-2CE2-49A7-93D2-F70AAAE23D57}.Release|x86.Build.0 = Release|Win32
+		{C4EC1D2E-2CE2-49A7-93D2-F70AAAE23D57}.Release|x86.Deploy.0 = Release|Win32
+		{C4EC1D2E-2CE2-49A7-93D2-F70AAAE23D57}.Win7 Debug|x64.ActiveCfg = win7 Debug|x64
+		{C4EC1D2E-2CE2-49A7-93D2-F70AAAE23D57}.Win7 Debug|x64.Build.0 = win7 Debug|x64
+		{C4EC1D2E-2CE2-49A7-93D2-F70AAAE23D57}.Win7 Debug|x64.Deploy.0 = win7 Debug|x64
+		{C4EC1D2E-2CE2-49A7-93D2-F70AAAE23D57}.Win7 Debug|x86.ActiveCfg = Debug|Win32
+		{C4EC1D2E-2CE2-49A7-93D2-F70AAAE23D57}.Win7 Debug|x86.Build.0 = Debug|Win32
+		{C4EC1D2E-2CE2-49A7-93D2-F70AAAE23D57}.Win7 Debug|x86.Deploy.0 = Debug|Win32
+		{C4EC1D2E-2CE2-49A7-93D2-F70AAAE23D57}.Win7 Release|x64.ActiveCfg = Win7 Release|x64
+		{C4EC1D2E-2CE2-49A7-93D2-F70AAAE23D57}.Win7 Release|x64.Build.0 = Win7 Release|x64
+		{C4EC1D2E-2CE2-49A7-93D2-F70AAAE23D57}.Win7 Release|x64.Deploy.0 = Win7 Release|x64
+		{C4EC1D2E-2CE2-49A7-93D2-F70AAAE23D57}.Win7 Release|x86.ActiveCfg = Release|Win32
+		{C4EC1D2E-2CE2-49A7-93D2-F70AAAE23D57}.Win7 Release|x86.Build.0 = Release|Win32
+		{C4EC1D2E-2CE2-49A7-93D2-F70AAAE23D57}.Win7 Release|x86.Deploy.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
