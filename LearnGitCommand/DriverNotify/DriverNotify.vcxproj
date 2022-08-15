@@ -213,10 +213,12 @@
   <ItemGroup>
     <ClCompile Include="DriverEntry.c" />
     <ClCompile Include="Notify_CallBack.c" />
+    <ClCompile Include="Process_CallBack.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DNCommDef.h" />
     <ClInclude Include="Notify_CallBack.h" />
+    <ClInclude Include="Process_Callback.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -25,12 +25,18 @@
     <ClCompile Include="Notify_CallBack.c">
       <Filter>Resource Files</Filter>
     </ClCompile>
+    <ClCompile Include="Process_CallBack.c">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Notify_CallBack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DNCommDef.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Process_Callback.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

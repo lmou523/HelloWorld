@@ -2,9 +2,11 @@
 
 #include "DNCommDef.h"
 #include "Notify_CallBack.h"
+#include "Process_Callback.h"
 
 
 
+// 遍历所有PsSetCreateProcessNotifyRoutine注册的回调函数
 void FindProcessNotify()
 {
 	UNICODE_STRING strApiName = { 0 };
@@ -73,11 +75,15 @@ void FindProcessNotify()
 	return;
 }
 
+
+
 // 驱动反初始化
 void DrvUnload(PDRIVER_OBJECT pDriver)
 {
 	// 卸载通知的回调函数
 	UninstallNotifyCallBack();
+	//卸载进程通知的回调
+	UninstallProcessRegCallback();
 }
 
 // 
@@ -92,8 +98,12 @@ NTSTATUS DriverEntry(PDRIVER_OBJECT pDriver, PUNICODE_STRING reg_path)
 	NTSTATUS ntstatus = STATUS_SUCCESS;
 
 	ntstatus = InstallNotifyCallBack();
+	ERRNTSTATUSRET(ntstatus);
 
-	FindProcessNotify();
+	// FindProcessNotify();
+
+	ntstatus = InstallProcessRegCallback(pDriver);
+	ERRNTSTATUSRET(ntstatus);
 
 	return ntstatus;
 }

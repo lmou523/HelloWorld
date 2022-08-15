@@ -2,7 +2,7 @@
 
 #include <ntifs.h>
 #include <windef.h>
-
+#include <wdm.h>
 
 #define MAXNOTIIFYSZ 64
 
