@@ -141,12 +141,12 @@ NTSTATUS InstallNotifyCallBack()
 { 
 	NTSTATUS ntstatus = STATUS_SUCCESS;
 
-	ntstatus = PsSetCreateProcessNotifyRoutine(CreateProcessNotify_CallBack, FALSE);
-	ERRNTSTATUSRET(ntstatus);
-	ntstatus = PsSetLoadImageNotifyRoutine(LoadImageNotify_CallBack);
-	ERRNTSTATUSRET(ntstatus);
-	ntstatus = PsSetCreateThreadNotifyRoutine(CreateThreadNotify_CallBack);
-	ERRNTSTATUSRET(ntstatus);
+	//ntstatus = PsSetCreateProcessNotifyRoutine(CreateProcessNotify_CallBack, FALSE);
+	//ERRNTSTATUSRET(ntstatus);
+	//ntstatus = PsSetLoadImageNotifyRoutine(LoadImageNotify_CallBack);
+	//ERRNTSTATUSRET(ntstatus);
+	//ntstatus = PsSetCreateThreadNotifyRoutine(CreateThreadNotify_CallBack);
+	//ERRNTSTATUSRET(ntstatus);
 	ntstatus = CmRegisterCallback(Register_CallBack,(PVOID)0x123456,&cookie);
 	ERRNTSTATUSRET(ntstatus);
 
@@ -159,9 +159,9 @@ NTSTATUS UninstallNotifyCallBack()
 {
 	NTSTATUS ntstatus = STATUS_SUCCESS;
 
-	PsSetCreateProcessNotifyRoutine(CreateProcessNotify_CallBack, TRUE);
-	PsRemoveLoadImageNotifyRoutine(LoadImageNotify_CallBack);
-	PsRemoveCreateThreadNotifyRoutine(CreateThreadNotify_CallBack);
+	//PsSetCreateProcessNotifyRoutine(CreateProcessNotify_CallBack, TRUE);
+	//PsRemoveLoadImageNotifyRoutine(LoadImageNotify_CallBack);
+	//PsRemoveCreateThreadNotifyRoutine(CreateThreadNotify_CallBack);
 
 	CmUnRegisterCallback(cookie);
 	return ntstatus;

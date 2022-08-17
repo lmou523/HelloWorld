@@ -80,10 +80,10 @@ void FindProcessNotify()
 // 驱动反初始化
 void DrvUnload(PDRIVER_OBJECT pDriver)
 {
-	// 卸载通知的回调函数
+	// 卸载注册表通知的回调函数
 	UninstallNotifyCallBack();
-	//卸载进程通知的回调
-	UninstallProcessRegCallback();
+	// 卸载进程通知的回调
+	//UninstallProcessRegCallback();
 }
 
 // 
@@ -101,9 +101,9 @@ NTSTATUS DriverEntry(PDRIVER_OBJECT pDriver, PUNICODE_STRING reg_path)
 	ERRNTSTATUSRET(ntstatus);
 
 	// FindProcessNotify();
-
-	ntstatus = InstallProcessRegCallback(pDriver);
-	ERRNTSTATUSRET(ntstatus);
+	
+	//ntstatus = InstallProcessRegCallback(pDriver);
+	//ERRNTSTATUSRET(ntstatus);
 
 	return ntstatus;
 }

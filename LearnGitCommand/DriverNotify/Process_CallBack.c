@@ -62,7 +62,7 @@ NTSTATUS InstallProcessRegCallback(PDRIVER_OBJECT pDriver)
 
 	UNICODE_STRING wstrAttHigh = { 0 };
 	RtlInitUnicodeString(&wstrAttHigh, L"321999");
-
+	 
 	// 关心哪一种内核对象PsProcessType 进程对象
 	oboReg.ObjectType = PsProcessType;
 	// 句柄创建和复制
