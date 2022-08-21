@@ -22,12 +22,18 @@
     <ClInclude Include="HookOpenProcess.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SSTDFound.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="HookOpenProcess.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="DriverEntry.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SSTDFound.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

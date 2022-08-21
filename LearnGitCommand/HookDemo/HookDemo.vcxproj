@@ -198,9 +198,11 @@
   <ItemGroup>
     <ClCompile Include="DriverEntry.c" />
     <ClCompile Include="HookOpenProcess.c" />
+    <ClCompile Include="SSTDFound.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HookOpenProcess.h" />
+    <ClInclude Include="SSTDFound.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

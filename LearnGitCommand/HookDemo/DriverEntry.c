@@ -2,7 +2,7 @@
 #include <windef.h>
 
 #include "HookOpenProcess.h"
-
+#include "SSTDFound.h"
 
 
 
@@ -11,7 +11,7 @@
 // 驱动反初始化
 void DrvUnload(PDRIVER_OBJECT pDriver)
 {
-	UninstallHook();
+	// UninstallHook();
 }
 // 
 // 驱动入口函数
@@ -24,7 +24,8 @@ NTSTATUS DriverEntry(PDRIVER_OBJECT pDriver, PUNICODE_STRING reg_path)
 
 	NTSTATUS ntstatus = STATUS_SUCCESS;
 
-	ntstatus =  InstallHook();
+	// ntstatus =  InstallHook();
+	ULONG64 uladdr = GetSSDTApiAddr(114);
 
 	return ntstatus;
 }
