@@ -25,7 +25,7 @@ NTSTATUS DriverEntry(PDRIVER_OBJECT pDriver, PUNICODE_STRING reg_path)
 	NTSTATUS ntstatus = STATUS_SUCCESS;
 
 	// ntstatus =  InstallHook();
-	ULONG64 uladdr = GetSSDTApiAddr(114);
+	ULONG64 uladdr = GetSSDTApiAddr(pDriver,114);
 
 	return ntstatus;
 }

@@ -15,7 +15,6 @@ typedef NTSTATUS (* FuncNtOpenProcess)(
 );
 
 
-
 // °²×°¹³×Ó
 NTSTATUS InstallHook();
 

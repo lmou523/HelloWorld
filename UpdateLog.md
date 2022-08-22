@@ -1,5 +1,10 @@
 
 ////////////////////////////   
+2022-8-22   
+1.在HookDemo项目中获取SSTD表的方法换成了TitanHide项目中的搜索方式(遍历模块 先找到模块ntoskrnl.exe，再找到特征码 再找到SSDT)
+2 TitanHide:https://github.com/mrexodia/TitanHide
+
+////////////////////////////   
 2022-8-21   
 1.在HookDemo项目中增加了老系统中获取SSTD表中函数首地址的方法（不支持新系统）
 
